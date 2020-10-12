@@ -1,0 +1,140 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0"> 
+	<meta charset="utf-8"> 
+	
+<style> 
+input[type=button]{	 
+background-color: #77797c; 
+	border: none; 
+	border-radius: 10%; 
+	color: white; 
+	padding: 16px 32px; 
+	text-decoration: none; 
+	margin: 4px 2px; 
+	cursor: pointer; 
+} 
+</style> 
+
+	<title>Reflex Game</title> 
+</head> 
+<body>
+<script language="JavaScript"> 
+var startTime=new Date(); 
+var endTime=new Date(); 
+var startPressed=false; 
+var bgChangeStarted=false; 
+var maxWait=20; 
+var timerID; 
+
+function startTest() 
+{ 
+	document.body.style.background=document.response.bgColorChange.options[ 
+	document.response.bgColorChange.selectedIndex].text; 
+	bgChangeStarted=true; 
+	startTime=new Date(); 
+} 
+
+function remark(responseTime) 
+{ 
+	var responseString=""; 
+	if (responseTime < 0.50) 
+		responseString="Well done!"; 
+	else if (responseTime >= 0.50 && responseTime <= 1.00) 
+		responseString="Nice! "; 
+	else
+		responseString="Keep practicing!"; 
+	return responseString; 
+} 
+
+function stopTest() 
+{ 
+	if(bgChangeStarted) 
+	{ 
+		endTime=new Date(); 
+		var responseTime=(endTime.getTime()-startTime.getTime())/1000; 
+
+		document.body.style.background="white";	 
+		alert("Your response time is: " + responseTime + 
+	" seconds " + "\n" + remark(responseTime)); 
+		startPressed=false; 
+		bgChangeStarted=false; 
+	} 
+	else 
+	{ 
+		if (!startPressed) 
+		{ 
+			alert("press start first to start test"); 
+		} 
+		else 
+		{	 
+			clearTimeout(timerID); 
+			startPressed=false;			 
+			alert("cheater! you pressed too early!"); 
+		}			 
+	} 
+} 
+
+var randMULTIPLIER=0x015a4e35; 
+var randINCREMENT=1; 
+var today=new Date(); 
+var randSeed=today.getSeconds(); 
+function randNumber() 
+{ 
+	randSeed = (randMULTIPLIER * randSeed + randINCREMENT) % (1 << 31); 
+	return((randSeed >> 15) & 0x7fff) / 32767; 
+} 
+
+function startit() 
+{ 
+	if(startPressed) 
+	{ 
+		alert("Already started. Press stop to stop"); 
+		return; 
+	} 
+	else 
+	{ 
+		startPressed=true; 
+		timerID=setTimeout('startTest()', 6000*randNumber()); 
+	} 
+} 
+// --> 
+	</script> 
+		<center><strong><h1 style="color: black">Reflex Game</h1></center></strong> 
+		<center> 
+		<h2>Test your Response time!</h2> 
+		</center> 
+		<center><h3>How To Play</h3> 
+		<p>Click on "Start" first, and wait until the 
+background color changes. As soon as it changes, hit "stop!" 
+		</p> 
+
+		<br> 
+		<form name="response"> 
+		Change background color to: 
+		<select name="bgColorChange"> 
+		<option selected>deeppink 
+		<option>aliceblue 
+		<option>crimson 
+		<option>darkkhaki 
+		<option>skyblue 
+		<option>darkorchid 
+		<option>coral 
+		<option>chocolate 
+		<option>tomato 
+		<option>limegreen 
+		<option>cornflowerblue 
+		<option>darkolivegreen 
+		</select><br> 
+		<br> 
+
+		<input type="button" class="btn" value="Start" onClick="startit()"> 
+		<input type="button" class="btn" value="Stop" onClick="stopTest()"> 
+		</form> 
+		</center> 
+
+
+	</body> 
+</html> 

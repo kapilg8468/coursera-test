@@ -12,7 +12,27 @@
 // 	console.log("Buudy "+(x+1)+"\n");
 // }
 function chk(){
-var name ;
-name=" <h2>Hi buddy "+document.getElementById("name").value +  " jhakas </h1> ";
+var name ,greeting ,currentdate,hr,kp;
+var mon=["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+currentdate = new Date();
+hr=currentdate.getHours();
+if(hr<12)
+greeting="Good Morning ";
+else if(hr>=12&&hr<5)
+greeting="Good Afternoon ";
+else if(hr>=5&&hr<8)
+greeting="Good Evening ";
+else
+greeting="Have a great night ";
+if(hr<12)
+kp="AM";
+else
+{kp="PM";kp-=12;}
+var datetime = ", Today is " + currentdate.getDate() + " " + mon[currentdate.getMonth()] 
++ " " + currentdate.getFullYear() + "   " 
++ hr + ":" 
++ currentdate.getMinutes() + " "+ kp;
+
+name=" <h1> "+greeting +document.getElementById("name").value +  " "+datetime +" </h1>";
 document.getElementById("content").innerHTML=name;
 }
