@@ -18,16 +18,16 @@ currentdate = new Date();
 hr=currentdate.getHours();
 if(hr<12)
 greeting="Good Morning ";
-else if(hr>=12&&hr<5)
+else if(hr>=12&&hr<17)
 greeting="Good Afternoon ";
-else if(hr>=5&&hr<8)
+else if(hr>=17&&hr<20)
 greeting="Good Evening ";
 else
 greeting="Have a great night ";
 if(hr<12)
 kp="AM";
 else
-{kp="PM";kp-=12;}
+{kp="PM";hr-=12;}
 var datetime = ", Today is " + currentdate.getDate() + " " + mon[currentdate.getMonth()] 
 + " " + currentdate.getFullYear() + "   " 
 + hr + ":" 
