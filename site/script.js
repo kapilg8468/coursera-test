@@ -36,3 +36,34 @@ var datetime = ", Today is " + currentdate.getDate() + " " + mon[currentdate.get
 name=" <h1> "+greeting +document.getElementById("name").value +  " "+datetime +" </h1>";
 document.getElementById("content").innerHTML=name;
 }
+var mx=2000,cur=2000;
+function chk2(){
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET','https://codeforces.com/api/user.info?handles=buddy_1',false);
+        // console.log('hi kapil');
+        xhr.onload= function() {
+            // console.log(this.responseText);
+            let a1=JSON.parse(this.responseText);
+            for (key in a1){
+                if(key=== "result"){
+                    //  mx=a1[key][0].maxRating;
+                    // console.log(mx);
+                    let o2=a1[key];
+                    for(key in a1[key]){
+                    mx=o2[key].maxRating;
+                    cur=o2[key].rating;     
+                    }
+                }
+            }
+            
+        }
+        xhr.send();
+       
+}
+chk2();
+var str="max rating  "+mx;
+var str2="cur rating "+cur; 
+document.getElementById("maxRatin").innerHTML=str;
+document.getElementById("Ratin").innerHTML=str2;
+
+
