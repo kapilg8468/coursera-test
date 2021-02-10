@@ -37,7 +37,7 @@ document.getElementById("content").innerHTML=name;
 var mx=2000,cur=2000;
 function chk2(){
         const xhr = new XMLHttpRequest();
-        xhr.open('GET','https://codeforces.com/api/user.info?handles=buddy_1',false);
+        xhr.open('GET','https://codeforces.com/api/user.info?handles=buddy_king',false);
         // console.log('hi kapil');
         xhr.onload= function() {
             // console.log(this.responseText);
